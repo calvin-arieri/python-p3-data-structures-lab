@@ -17,15 +17,15 @@ spicy_foods = [
 ]
 
 def get_names(spicy_foods):
+   namesOfFood = []
    for food in spicy_foods:
-    print(food["name"])
+    food_list = food["name"]
+    namesOfFood.append(food_list)
+   return namesOfFood 
 get_names(spicy_foods)   
 
 def get_spiciest_foods(spicy_foods):
-    for food in spicy_foods:
-        result = food["heat_level"] > 5
-        if result:
-            print(food)
+    return [food for food in spicy_foods if food["heat_level"] > 5]
 get_spiciest_foods(spicy_foods)            
 
 def print_spicy_foods(spicy_foods):
@@ -33,13 +33,13 @@ def print_spicy_foods(spicy_foods):
         foodName = food["name"]
         foodCuisine = food["cuisine"]
         foodHeatLevel = "Heat Level: " + food["heat_level"]*"🌶"
-        print(foodName,"(", foodCuisine,") |", foodHeatLevel)
-print_spicy_foods()
+        print (f"{foodName} ({foodCuisine}) | {foodHeatLevel}")
+print_spicy_foods(spicy_foods)
 
 def get_spicy_food_by_cuisine(spicy_foods, cuisine):
     for food in spicy_foods:
         if food["cuisine"] == cuisine:
-            print(food)
+            return food
 get_spicy_food_by_cuisine(spicy_foods, "American")
 get_spicy_food_by_cuisine(spicy_foods, "Thai")     
 
@@ -47,17 +47,20 @@ def print_spiciest_foods(spicy_foods):
     for food in spicy_foods:
         spiciestFood = food["heat_level"] > 5
         if spiciestFood:
-            print_spicy_foods(food)
+            foodName = food["name"]
+            foodCuisine = food["cuisine"]
+            foodHeatLevel = "Heat Level: " + food["heat_level"]*"🌶"
+            print (f"{foodName} ({foodCuisine}) | {foodHeatLevel}")
 print_spiciest_foods(spicy_foods)
 
 def get_average_heat_level(spicy_foods):
     theSum = 0
     for food in spicy_foods:
         theSum = theSum + food["heat_level"]
-    print(theSum // len(spicy_foods))   
+    return theSum // len(spicy_foods)  
 get_average_heat_level(spicy_foods)    
 
 def create_spicy_food(spicy_foods, spicy_food):
     spicy_foods.append(spicy_food)
-    print(spicy_foods)
-create_spicy_food(spicy_foods, {"name": "Chapati","cuisine": "KFC", "heat_level": 1,},)   
+    return spicy_foods
+create_spicy_food(spicy_foods, {"name": "Griot","cuisine": "Hatian", "heat_level": 10,},)   
